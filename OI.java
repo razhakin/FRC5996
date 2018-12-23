@@ -5,16 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team5996.robot;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 
 import java.nio.file.attribute.PosixFileAttributeView;
 
-import org.usfirst.frc.team5996.robot.Sensors.Ultrasonic_Sensor;
-import org.usfirst.frc.team5996.robot.commands.ControlledRotate_Command;
-import org.usfirst.frc.team5996.robot.commands.Turn_Command;
-import org.usfirst.frc.team5996.robot.Robot;
+import frc.robot.Robot;
+import frc.robot.commands.ControlledRotate_Command;
+import frc.robot.commands.Drive_Command;
+import frc.robot.commands.Turn_Command;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
@@ -104,13 +104,13 @@ public class OI {
 	//------------------------------------------------------------------------------------------------------
 	//methods for driving
 	public double getDriveForward() {
-		//return getLStickXAxis();				//uncomment for controller drive
-		return getJoystickXAxis();				//uncomment for joystick drive
+		return getLStickXAxis();				//uncomment for controller drive
+		//return getJoystickXAxis();				//uncomment for joystick drive
 	}
 	
 	public double getDriveSideways() {
-		//return getLStickYAxis();				//uncomment for controller drive
-		return getJoystickYAxis();				//uncomment for joystick drive
+		return getLStickYAxis();				//uncomment for controller drive
+		//return getJoystickYAxis();				//uncomment for joystick drive
 	}
 	
 	public double getDriveRotation() {

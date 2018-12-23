@@ -6,7 +6,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team5996.robot;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Talon;

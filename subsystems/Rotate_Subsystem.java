@@ -1,7 +1,7 @@
-package org.usfirst.frc.team5996.robot.subsystems;
+package frc.robot.subsystems;
 
-import org.usfirst.frc.team5996.robot.Robot;
-import org.usfirst.frc.team5996.robot.commands.ControlledRotate_Command;
+import frc.robot.Robot;
+import frc.robot.commands.ControlledRotate_Command;
 
 import com.kauailabs.navx.frc.AHRS;
 

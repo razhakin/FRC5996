@@ -1,8 +1,8 @@
-package org.usfirst.frc.team5996.robot.subsystems;
+package frc.robot.subsystems;
 
 //imports
-import org.usfirst.frc.team5996.robot.Robot;
-import org.usfirst.frc.team5996.robot.commands.Drive_Command;
+import frc.robot.Robot;
+import frc.robot.commands.Drive_Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 //declares class - Drive_Subsystem - extends Subsystem REQUIRED!!! Cannot run otherwise. Since this is a subsystem call methods using commands.

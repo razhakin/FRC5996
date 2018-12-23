@@ -5,16 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team5996.robot;
+package frc.robot;
 
 //imports needed for camera
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
-import org.omg.CORBA.TRANSACTION_UNAVAILABLE;
-import org.opencv.core.Mat;
-import org.opencv.imgproc.Imgproc;
 
 //required dependencies
 import edu.wpi.first.wpilibj.DriverStation;
@@ -30,14 +25,10 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SPI;
 
-//Commands 
-import org.usfirst.frc.team5996.robot.commands.ControlledRotate_Command;
-import org.usfirst.frc.team5996.robot.commands.Drive_Command;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
+import frc.robot.sensors.Ultrasonic_Sensor;
 
-//subsystems and sensors
-import org.usfirst.frc.team5996.robot.subsystems.Drive_Subsystem;
-import org.usfirst.frc.team5996.robot.subsystems.Rotate_Subsystem;
-import org.usfirst.frc.team5996.robot.Sensors.Ultrasonic_Sensor;
 import com.kauailabs.navx.frc.AHRS;
 
 /**
@@ -53,12 +44,14 @@ public class Robot extends TimedRobot  {
 	public static final Drive_Subsystem driveSubsystem = new Drive_Subsystem();
 	public static final Ultrasonic_Sensor ultrasonic = new Ultrasonic_Sensor();
 	public static final Rotate_Subsystem rotate = new Rotate_Subsystem();
+	public static final enum DrivingType {
+		CONTROLLER,
+		JOYSTICK
+	};
 	
 	public static OI m_oi;
 
 	public static DriveExecutor driveExecutor = new DriveExecutor();
-	
-	public static String gameData;
 	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -70,6 +63,8 @@ public class Robot extends TimedRobot  {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
+		DrivingType drivingType = JOYSTICK;
+		
 		// m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -78,27 +73,9 @@ public class Robot extends TimedRobot  {
 			camera.setResolution(640, 480);
 			camera.setFPS(20);
 			camera.setExposureAuto();
-			//CvSink cvSink = CameraServer.getInstance().getVideo();
-			//CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);	
-			//Mat source = new Mat();
-			//Mat output = new Mat();
-		
-			while(!Thread.interrupted()) {
-				//cvSink.grabFrame(source);
-				//Imgproc.cvtColor(source, output, Imgproc.COLOR_BayerBG2RGB);
-				//outputStream.putFrame(output);
-			}
 		}).start();
-		//CameraServer server = CameraServer.getInstance();
-		//server.startAutomaticCapture();
 		
 		Robot.rotate.gyroInit();
-		//Robot.camera.setDefaultAngle();
-		try {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-		} catch(Exception e) {
-			System.err.println("DIDNT FIND GAME MESSAGE");
-		}
 	}
 
 	/**
